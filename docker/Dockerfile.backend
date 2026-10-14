@@ -3,15 +3,22 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system dependencies (including tesseract for OCR if needed)
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+# Install system dependencies (including tesseract and english training data for OCR)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     tesseract-ocr \
+    tesseract-ocr-eng \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Pre-download SentenceTransformer all-MiniLM-L6-v2 embedding model into container image
+RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
 COPY backend/ .
 

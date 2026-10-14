@@ -1,0 +1,49 @@
+# Git & source control
+**/.git
+**/.gitignore
+
+# Dependencies & virtual environments
+**/node_modules
+**/frontend/node_modules
+**/frontend/dist
+**/backend/venv
+**/.venv
+**/venv
+**/ENV
+**/env
+
+# Python cache & compiled bytecode
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+
+# Testing, linting, coverage
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/.coverage
+**/htmlcov
+
+# Environment variables & secrets
+**/.env
+**/backend/.env
+**/frontend/.env
+*.pem
+*.key
+
+# Temporary files & logs
+**/.DS_Store
+**/Thumbs.db
+**/*.log
+scratch/
+temp/
+tmp/
+
+# Runtime data (persisted via docker volume mount)
+**/data/uploads/*
+!**/data/uploads/.gitkeep
+**/data/processed/*
+!**/data/processed/.gitkeep
+**/data/chroma/*
+!**/data/chroma/.gitkeep
